@@ -1,3 +1,9 @@
+---
+import Menu from "../components/menu"
+import Footer from "../components/footer"
+import Claroscuro from "../components/claroscuro.jsx"
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -9,15 +15,35 @@
 		<title>Astro Basics</title>
 	</head>
 	<body>
-		<slot />
+		<Menu></Menu>
+		<Claroscuro client:load/>
+		<div class="container">
+			<slot />
+		</div>
+		<Footer></Footer>
 	</body>
 </html>
 
-<style>
+<style is:global>
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
 	}
+
+	@font-face {
+		font-family: 'molot';
+		src: url('/Fonts/molot.otf') format('opentype');
+		font-style: normal;
+  	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		font-family: 'molot', sans-serif;
+		letter-spacing: 2px;
+		
+	}
+
+
 </style>

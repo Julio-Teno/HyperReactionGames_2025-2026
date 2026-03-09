@@ -1,11 +1,27 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import SectionPrincipal from '../components/sectionprincipal';
+import ContenedorJuegos from '../components/contenedorjuegos';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout>      
+        <SectionPrincipal 
+            titulo="Bienvenido a HyperReaction Games" 
+            texto="Aquí encontrarás los mejores juegos de reacción para poner a prueba tus reflejos y habilidades. ¡Prepárate para la acción!"
+            imagen="/Images/logocompleto.png"
+        />
+
+        <div class="section">
+
+            <ContenedorJuegos />
+        </div>
+    
+        <div class="section">
+            <h2>Quienes somos</h2>
+            <p>Soy Julio y esto es de pruebalorem ipsim klsjdlkfksldjfkdsljflskdjfslkdjfsdkljflskdjf</p>
+            <p>Hola</p>
+        </div>   
 </Layout>

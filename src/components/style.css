@@ -1,0 +1,329 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Melon Pop', sans-serif;
+    background-color: #dad9d9;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    border-bottom: 5px solid #242424
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+p, a, label, input, button, li, select, textarea {
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+
+/*
+header h1 {
+    margin: 0;
+    font-size: 3em;
+    letter-spacing: 2px;
+}
+
+.headerblanco {
+    background: linear-gradient(180deg, #ffffff, #e0e0e0, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+}
+
+.headerrojo {
+    background: linear-gradient(180deg, #ff6b6b, #cc0000, #8b0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+}
+
+.headernaranja {
+    background: linear-gradient(180deg, #ffa500, #ff8c00, #ff6347);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+
+}*/
+
+.headerlogotexto {
+    width: 200px;
+    height: auto;
+}
+
+
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header nav {
+    height: 100%;
+    font-family: 'molot';
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100%;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 0 15px;
+    font-family: sans-serif;
+    display: flex;
+    height: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-family: 'Molot', sans-serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+    color: #e9b517
+}
+
+header img {
+    width: 60px;
+    height: 100%;
+}
+
+footer {
+  background-color:  #333;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  color: white;
+  border-top: 5px solid #242424;
+}
+
+footer p {
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}   
+
+
+.section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px 0 20px 0;
+    width: 80%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+.section h1, .section h2 {
+    margin-top: 0;
+    color: #9a1f1f;
+    text-align: center;
+}
+
+.sectionprincipal { 
+    background-color: #e9b517;
+}
+
+.sectionprincipal h2 {
+    color: #1a1a1a;
+}
+
+.sectionprincipal picture {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.sectionprincipal img {
+    width: 100%;
+    height: auto;
+}
+
+.containerjuegos {
+    height: 600px;
+    background-color: #c9c9c9;
+    padding: 30px;
+    border-radius: 8px;
+
+}
+
+.containerjuegos iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.sectioncontroles {
+    background-color: #e9b517;
+    color: #1a1a1a;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+
+.containerportadasjuegos {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.containerportadasjuegos div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerimgportada {
+    width: 300px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 8px;
+}
+
+.containerportadasjuegos img {
+    width: 100%;    
+    height: 200px;
+    transition: transform 0.3s ease;
+}
+
+.containerportadasjuegos img:hover {
+    transform: scale(1.1);
+}
+
+.btn {
+    background-color: #333;
+    color: #e9b517;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Molot', sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555;
+    color: #e9b517;
+}
+
+.botonclaroscuro {  
+    position: absolute;
+    width: 280px;
+    top: 120px;
+    right: 10px;
+    transition: all 0.3s ease;
+}
+
+.botonclaroscuro:hover {
+    transform: scale(1.04);
+}
+
+
+.formcont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.formcont form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.formcont label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}   
+
+.formcont input[type="text"], .formcont input[type="email"], .formcont select ,.formcont textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f5f5f5;
+}
+
+.formcont textarea {
+    min-height: 250px;
+}
+
+.formcont input[type="submit"] {
+    font-size: 1.5em;
+}   
+
+/*MODO OSCURO*/
+
+.modoscuro {
+    background-color: #141414;
+    color: white;
+    transition: all 0.1s;
+}
+
+/*experimentos estilos modo oscuro*/
+.modoscuro header {
+    background-color: #222;
+    color: white;
+    border-bottom: 5px solid #000;
+}
+
+.modoscuro footer {
+    background-color: #222;
+    color: white;
+    border-top: 5px solid #000;
+}
+
+.modoscuro .section {
+    background-color: #6d6d6d;
+    color: white;
+}   
+
+.modoscuro .sectionprincipal {
+    background-color: #e9b517;
+    color: white;
+}
+
+.modoscuro .containerjuegos {
+    background-color: #333;
+}
