@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/AuthLayout.astro';
+
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+        <a href="/"><img src="/Images/logocompleto.png" alt="Logo" class="logo-register"></a>
+
+        <form id="formlogin" class="formlogin" action="/api/auth/login" method="post">
+            <h2>Inicio de Sesion</h2>
+            <div>
+                <label for="usuario">Nombre de Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            
+
+            <div>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+
+            <input class="btn" type="submit" value="Enviar">
+
+            <p>¿No tienes una cuenta? <a href="/register">Regístrate aquí</a></p>
+
+            <div id="mensaje">
+
+            </div>
+        </form>
+
+        <script>
+            
+            //peticion fetch y recibir error
+
+            const form = document.getElementById('formlogin') as HTMLFormElement;
+            const usuariointroducido = document.getElementById('usuario') as HTMLInputElement;
+            const passwordintroducida = document.getElementById('password') as HTMLInputElement;
+
+            form?.addEventListener('submit', async function(event) {
+                event.preventDefault(); // Evita el envío tradicional del formulario
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        usuario: usuariointroducido.value,
+                        password: passwordintroducida.value
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    mostrarMensaje(data.error, 'error');
+                } else {
+                    mostrarMensaje(data.message, 'success');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarMensaje('Error al enviar la solicitud', 'error');
+            }
+
+            function mostrarMensaje(mensaje: string, tipo: string) {
+                const mensajeDiv = document.getElementById('mensaje') as HTMLDivElement;
+                mensajeDiv.innerHTML = ''; // Limpiar mensajes anteriores
+                mensajeDiv.innerHTML += mensaje;
+                mensajeDiv.className = "mensajeformlogin" + tipo; //error o success
+
+                if (tipo === 'success') {
+                    setTimeout(() => {
+                        ainicio();
+                    }, 1000); //redirigir en unseg
+                }
+            }
+
+            function ainicio() {
+                window.location.href = '/';
+            }
+            });
+        </script>
+</Layout>

@@ -5,17 +5,35 @@ import ContenedorJuegos from '../components/contenedorjuegos';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+//comprobar bd
+
+/*
+import { query } from '../lib/db';
+
+let result;
+let usuarios = [];
+
+try {
+  result = await query('SELECT * FROM usuario');
+  usuarios = result.rows;
+  console.log('Usuarios encontrados:', usuarios.length);
+} catch (error) {
+  console.error('Error al consultar la base de datos:', error);
+}*/
+
+export const prerender = false;
+
 ---
 
 <Layout>      
         <SectionPrincipal 
-            titulo="Bienvenido a HyperReaction Games" 
+            titulo="Los mejores juegos de reflejos en HyperReactionGames" 
             texto="Aquí encontrarás los mejores juegos de reacción para poner a prueba tus reflejos y habilidades. ¡Prepárate para la acción!"
             imagen="/Images/logocompleto.png"
         />
 
         <div class="section">
-
             <ContenedorJuegos />
         </div>
     

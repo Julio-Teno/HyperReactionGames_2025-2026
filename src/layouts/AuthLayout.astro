@@ -1,7 +1,5 @@
 ---
-import Menu from "../components/menu"
-import Footer from "../components/footer"
-import Claroscuro from "../components/claroscuro.jsx"
+import Style from "../components/style.css"
 ---
 
 <!doctype html>
@@ -11,16 +9,14 @@ import Claroscuro from "../components/claroscuro.jsx"
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href={Style} />
 		<meta name="generator" content={Astro.generator} />
 		<title>HyperReactionGames</title>
 	</head>
 	<body>
-		<Menu client:load></Menu>
-		<Claroscuro client:load/>
-		<div class="container">
+		<div class="containerlogin">
 			<slot />
 		</div>
-		<Footer></Footer>
 	</body>
 </html>
 
@@ -44,6 +40,7 @@ import Claroscuro from "../components/claroscuro.jsx"
 		letter-spacing: 2px;
 		
 	}
+    
 
 
 </style>

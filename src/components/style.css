@@ -134,6 +134,24 @@ footer p {
     padding: 20px;
 }   
 
+.containerlogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh; /* 90% de la pantalla */
+}
+
+.containerlogin .formlogin {
+    width: 100%;
+    max-width: 400px; /* Ancho máximo para pantallas grandes */
+}
+
+.containerlogin .logo-register {
+    width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+}
 
 .section {
     background-color: white;
@@ -291,7 +309,69 @@ footer p {
 
 .formcont input[type="submit"] {
     font-size: 1.5em;
-}   
+}
+
+
+
+
+
+.formlogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);   
+    width: 25%;
+    position: relative;
+    height: auto;
+}
+
+.formlogin div  {
+    display: flex;
+    flex-direction: column;
+      width: 90%;
+}
+
+.formlogin label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+
+.formlogin h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.formlogin input[type="text"], .formlogin input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f5f5f5;
+  
+}
+
+
+.mensajeformloginsuccess {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.mensajeformloginerror {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+
 
 /*MODO OSCURO*/
 

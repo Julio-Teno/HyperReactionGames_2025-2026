@@ -5,7 +5,7 @@ export default function SectionPrincipal({ titulo, texto, imagen }) {
 
   return (
     <div className="section sectionprincipal">
-      <h2>{titulo}</h2>
+      <h1>{titulo}</h1>
       <p>{texto}</p>
       <picture>
           <source src={imagen} type="image/png" />

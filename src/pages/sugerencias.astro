@@ -2,14 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import SectionPrincipal from '../components/sectionprincipal';
 
+export const prerender = false;
+
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
         <div class="section formcont">        
-            <form action="/contacto" method="post" class="contact-form">
-                <h2>Contacto</h2>
+            <form action="/sugerencias" method="post" class="contact-form">
+                <h2>Sugerencias</h2>
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -20,8 +23,8 @@ import SectionPrincipal from '../components/sectionprincipal';
                 <select id="subject" name="subject" required>
                     <option disabled selected value="">Seleccione un asunto</option>
                     <option value="publicar">Publicar Juego</option>
-                    <option value="sugerencia">Sugerencia</option>
                     <option value="reporte">Errores/Bugs</option>
+                    <option value="colaboracion">Colaboración</option>
                     <option value="otro">Otro</option>
                 </select>
 
