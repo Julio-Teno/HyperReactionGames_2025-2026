@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ContenedorJuegos from '../components/contenedorjuegos';
 
+
 export const prerender = false;
 
 
@@ -11,6 +12,13 @@ export const prerender = false;
 
 <Layout>
     <div class="section">
-    <ContenedorJuegos />
+    <h1>Juegos</h1>
+    <ContenedorJuegos client:load />
+    </div>
+
+    <div class="section">
+        <h1>Mejor valorados</h1>
+        <p>Pendiente de hacer</p>
+        <ContenedorJuegos client:load />
     </div>
 </Layout>

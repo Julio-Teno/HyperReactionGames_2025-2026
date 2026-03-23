@@ -1,7 +1,11 @@
 import React from 'react';
 import './style.css';
+import { useState } from 'react';
 
-export default function Juegocont({ titulo, imagen, link }) {
+export default function Juegocont({ titulo, imagen, descripcion, link }) {
+  const [descripcionState, setDescripcionState] = useState(descripcion);
+  const [descripcionMostrada, setDescripcionMostrada] = useState(false);
+
   return (
     
         <div>
@@ -9,8 +13,14 @@ export default function Juegocont({ titulo, imagen, link }) {
                 <div className='containerimgportada'>
                      <img src={imagen} alt={titulo} className='juegologo' />
                 </div>
-                <h2>{titulo}</h2>
             </a>
+                <div className='containertextojuego'>
+                    <h2>{titulo}</h2>
+                     <button className='btn' onClick={() => setDescripcionMostrada(!descripcionMostrada)}>
+                        {descripcionMostrada ? 'Saber menos' : 'Saber mas'}
+                    </button>
+                    {descripcionMostrada && <p>{descripcionState}</p>}
+                </div>
         </div>
 
   );

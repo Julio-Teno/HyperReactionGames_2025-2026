@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionPrincipal from '../components/sectionprincipal';
+import { autorizacion } from '../lib/autorizacion';
 
 export const prerender = false;
+
+const authRedirect = await autorizacion(Astro, { nuevapagina: '/404' });
+if (authRedirect) return authRedirect;
 
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -12,7 +15,7 @@ export const prerender = false;
 <Layout>
         <div class="section formcont">        
             <form action="/sugerencias" method="post" class="contact-form">
-                <h2>Sugerencias</h2>
+                <h1>Sugerencias</h1>
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" name="name" required>
 
@@ -35,3 +38,4 @@ export const prerender = false;
             </form>
         </div> 
 </Layout>
+

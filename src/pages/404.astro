@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import SectionPrincipal from '../components/sectionprincipal';
+import ContenedorJuegos from '../components/contenedorjuegos';
 
 export const prerender = false;
 
@@ -13,8 +13,15 @@ export const prerender = false;
         
         <div class="section">
             <h1>Error 404</h1>
-            <p>La página que está buscando no existe. Todavía...</p>
-            <a href="/" class="btn">Volver al Inicio</a>
+            <h2>La pagina que esta buscando no existe. Todavia...</h2>
             <img src="/Images/logocompleto.png" alt="Error 404" class="error-image">
+            <div>
+                <a href="/" class="btn">Volver al Inicio</a>
+            </div>
         </div> 
+
+        <div class="section">
+            <h2>Accede a sugerencias de otros juegos</h2>
+            <ContenedorJuegos client:load/>
+        </div>
 </Layout>

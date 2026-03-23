@@ -32,12 +32,11 @@ export default function Menu() {
             <ul>
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/juegos">Juegos</a></li>
-                <li><a href="/sugerencias">Sugerencias</a></li>
                 {!iniciosesion && (
                     <><li><a href="/login">Iniciar Sesion</a></li><li><a href="/register">Registrarse</a></li></>
                 )} 
                 {iniciosesion && (
-                    <><li><a href="/perfil">{nombreusuario}</a></li><li><a href="/api/auth/logout">Cerrar Sesion</a></li></>
+                    <><li><a href="/sugerencias">Sugerencias</a></li><li><a href="/perfil">{nombreusuario}</a></li><li><a href="/api/auth/logout">Cerrar Sesion</a></li></>
                 )}
             </ul>
         </nav>

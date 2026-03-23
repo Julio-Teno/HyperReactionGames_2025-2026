@@ -48,6 +48,8 @@ export async function POST({ request }) {
       return Response.json({ error: 'Error al registrar el usuario' }, { status: 500 });
     }
 
+    //pendiente dar rol por defecto al usuario
+
     return Response.json({ message: 'Usuario registrado exitosamente' }, { status: 201 });
   } catch (error) {
     return Response.json(
