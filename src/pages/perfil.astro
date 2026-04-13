@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+import { autorizacion } from '../lib/autorizacion';
+import { query } from '../lib/db';
+
+export const prerender = false;
+
+
+const authRedirect = await autorizacion(Astro, { nuevapagina: '/404' });
+if (authRedirect) return authRedirect;
+
+const sid = Astro.cookies.get('sid')?.value;
+const datosUsuario = await query('SELECT nombre, fecha_alta FROM usuario WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
+const rolesUsuario = await query('SELECT id_rol FROM usuariorol WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <div class="section">
+        <h1>Hola, {datosUsuario.rows[0].nombre}</h1>
+        <p>Este es tu perfil de usuario.</p>
+        <p>Creaste tu cuenta el {datosUsuario.rows[0].fecha_alta}.</p>
+        <p>Tus roles son: {rolesUsuario.rows.map(rol => rol.id_rol).join(', ')}</p>
+    </div>
+</Layout>

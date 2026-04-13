@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContenedorJuegos from '../../components/juegos/contenedorjuegos';
+import Conex from '../../components/juegos/conexionwebgl';
+import { autorizacion } from '../../lib/autorizacion';
+import { query } from '../../lib/db';
+
+export const prerender = false;
+
+const authRedirect = await autorizacion(Astro, { nuevapagina: '/404' });
+if (authRedirect) return authRedirect;
+
+const { juego } = Astro.params;
+
+if (!juego) {
+    return Astro.redirect('/404');
+} else if (isNaN(Number(juego))) {
+    return Astro.redirect('/404');
+}
+
+const juegoaobtener = await query('SELECT id_juego, titulo, descripcion, categoria, fecha_creacion FROM juego WHERE id_juego = $1', [juego]);
+
+let tituloj = '';
+let nombrejuegoj = '';
+let id_juegoj = 0;
+let descripcionj = '';
+let categoriaj = '';
+let fecha_creacionj = '';
+
+
+if (juegoaobtener.rowCount === 0) {
+    return Astro.redirect('/404');
+} else {
+     tituloj = juegoaobtener.rows[0].titulo;
+     nombrejuegoj = tituloj.trim().replace(/\s+/g, '');
+     id_juegoj = juegoaobtener.rows[0].id_juego;
+     descripcionj = juegoaobtener.rows[0].descripcion;
+     categoriaj = juegoaobtener.rows[0].categoria;
+     fecha_creacionj = juegoaobtener.rows[0].fecha_creacion;
+} 
+
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <Conex titulo={tituloj} nombrejuego={nombrejuegoj} id_juego={id_juegoj} descripcion={descripcionj} categoria={categoriaj} fecha_creacion={fecha_creacionj} />
+    <div class="section">
+        <h2>Juegos relacionados</h2>
+        <ContenedorJuegos url={`/api/juegos/getjuegosnoactual/${id_juegoj}`} client:load />
+    </div>
+</Layout>

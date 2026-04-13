@@ -20,7 +20,7 @@ if (!result.rows) {
 */
 
 import { query } from '../../../lib/db.jsx';
-
+import bcrypt from 'bcryptjs';
 import { randomBytes } from 'node:crypto';
 
 export const prerender = false;
@@ -51,12 +51,12 @@ export async function POST({ request }) {
     );
 
     if (!result.rowCount) { //no u
-      return Response.json({ error: 'Credenciales incorrectas' }, { status: 404 });
+      return Response.json({ error: 'Credenciales incorrectas' }, { status: 401 });
     }
 
     const user = result.rows[0];
 
-    if (user.password !== password) { //no up
+    if (!await bcrypt.compare(password, user.password)) { //no up
       return Response.json({ error: 'Credenciales incorrectas' }, { status: 401 });
     }
 
@@ -76,7 +76,8 @@ export async function POST({ request }) {
     return Response.json({ message: 'Inicio de sesión exitoso' }, { status: 200, headers: { 'Set-Cookie': lacookie } });
   } catch (error) {
     return Response.json(
-      { error: 'Error interno del servidor', details: String(error?.message || error) },
+      //{ error: 'Error interno del servidor', details: String(error?.message || error) },
+      { error: 'Error interno del servidor' },
       { status: 500 }
     );
   }

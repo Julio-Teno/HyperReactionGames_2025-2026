@@ -5,12 +5,12 @@ import './style.css';
 export default function Claroscuro() {
   const [modoscuro, setIsDarkMode] = useState(false);
 
-  const [textoboton, setTextoboton] = useState(modoscuro ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+  const [textoboton, setTextoboton] = useState(modoscuro ? <img src='/Images/sun.svg' alt='Modo claro' /> : <img src='/Images/moon.svg' alt='Modo oscuro' />);
 
   const cambiartema = () => {
     const nuevomodo = !modoscuro;
     setIsDarkMode(nuevomodo);
-    setTextoboton(nuevomodo ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+    setTextoboton(nuevomodo ? <img src='/Images/sun.svg' alt='Modo claro' /> : <img src='/Images/moon.svg' alt='Modo oscuro' />);
   };
 
   // Use useEffect to handle DOM manipulation after component mounts

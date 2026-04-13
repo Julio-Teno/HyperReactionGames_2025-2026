@@ -1,16 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContenedorJuegos from '../components/contenedorjuegos';
+import ContenedorJuegos from '../components/juegos/contenedorjuegos';
 
 export const prerender = false;
 
+/*import {ComprobarIframe}  from '../components/comprobariframe';
+
+const inIframe = ComprobarIframe();
+
+if (inIframe === true) {
+    return Astro.redirect('/404');
+}*/
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+
 ---
 
 <Layout>
-        
         <div class="section">
             <h1>Error 404</h1>
             <h2>La pagina que esta buscando no existe. Todavia...</h2>
@@ -22,6 +30,20 @@ export const prerender = false;
 
         <div class="section">
             <h2>Accede a sugerencias de otros juegos</h2>
-            <ContenedorJuegos client:load/>
+            <ContenedorJuegos url={"/api/juegos/getjuegos"} client:load/>
         </div>
 </Layout>
+
+<script>
+  if (window.self !== window.top) {
+
+    document.body.innerHTML = `
+      <div style="display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column; text-align: center; color: white;">
+        <h1>Error</h1>
+        <p>Ha habido un problema al cargar el juego</p>
+      </div>
+    `;
+    document.body.style.backgroundColor = 'black';
+    document.body.style.transition = 'none';
+  }
+</script>

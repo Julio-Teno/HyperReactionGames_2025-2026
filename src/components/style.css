@@ -14,7 +14,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
+    height: 80px;
     border-bottom: 5px solid #242424
 }
 
@@ -66,6 +66,8 @@ header h1 {
 .headerlogotexto {
     width: 200px;
     height: auto;
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -109,8 +111,10 @@ nav ul li a:hover {
 }
 
 header img {
-    width: 60px;
+    width: 66px;
     height: 100%;
+    margin-bottom: 5px;
+    padding-left: 10px;
 }
 
 footer {
@@ -131,7 +135,7 @@ footer p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
 }   
 
 .containerlogin {
@@ -153,6 +157,12 @@ footer p {
     margin-bottom: 20px;
 }
 
+.sectionjuego {
+    width: 70% !important;
+    padding-bottom: 0 !important;
+    width: 90%;
+}
+
 .section {
     background-color: white;
     border-radius: 10px;
@@ -168,35 +178,61 @@ footer p {
     margin-top: 0;
     color: #9a1f1f;
     text-align: center;
+    letter-spacing: 2px;
 }
 
-.sectionprincipal { 
-    background-color: #e9b517;
+.sectionprincipal {
+    margin-top: -10px; 
+    width: 100%;
+    background: rgba(0, 0, 0, 0.26);
+    /*background-color: #e9b517;*/
+    border-bottom: 5px solid #333;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.sectionprincipal h2 {
-    color: #1a1a1a;
+.sectionprincipal h1 {
+    font-size: 45px;
+    text-align: left;
+    filter: drop-shadow(2px 2px 1px black);
+    letter-spacing: 3px;
 }
 
 .sectionprincipal picture {
     display: block;
     margin: 20px auto;
-    width: 100%;
+    width: 50%;
     height: auto;
     border-radius: 8px;
 }
 
 .sectionprincipal img {
-    width: 100%;
+    width: 70%;
+    margin: 0 15%;
     height: auto;
 }
 
-.containerjuegos {
-    height: 600px;
-    background-color: #c9c9c9;
-    padding: 30px;
-    border-radius: 8px;
+.sectionprincipal .principal-text {
+    color: #333;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    padding: 3em;
+}
 
+.sectionprincipal p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.containerjuegos {
+    width: 100%;
+    height: 80vh;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 15px;
+    /*border: 3px solid #333;*/
 }
 
 .containerjuegos iframe {
@@ -205,13 +241,48 @@ footer p {
     border: none;
 }
 
-.sectioncontroles {
-    background-color: #e9b517;
-    color: #1a1a1a;
+.containerjuegos-section {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerjuegos-section-columna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 15px 0 15px 0;
+    width: 100%;
+}
+
+.containerjuegos-section-columna2 {
+    background-color: #595959;
+}
+
+.containerjuegos-section-columna1 {
+    background-color: #e9b517;
+    border-radius: 0 0 8px 8px;
+}
+
+.containerjuegos-section-columna ul {
+    padding-left: 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+.containerjuegos-section-columna li {
+    list-style-type: none;
+    padding: 5px 0;
+}
+
+.containerjuegos-sectioncontenido {
+    display: flex;
+    flex-direction: row ;
+    align-items: center;
+    gap: 1rem;
 }
 
 
@@ -238,14 +309,14 @@ footer p {
     
 }
 
-.containerportadasjuegos img {
+.containerportadasjuegos picture img , .containerportadasjuegos picture  {
     width: 100%;    
     height: 200px;
     transition: transform 0.3s ease;
     position: relative;
 }
 
-.containerportadasjuegos img:hover {
+.containerportadasjuegos picture img:hover, .containerportadasjuegos picture:hover {
     transform: scale(1.1);
 }
 
@@ -297,18 +368,10 @@ footer p {
     color: #e9b517;
 }
 
-.botonclaroscuro {  
-    position: fixed;
-    width: 280px;
-    top: 120px;
-    right: 10px;
-    transition: all 0.3s ease;
+.bigbtn {
+    font-size: 1.5em;
+    padding: 15px 30px;
 }
-
-.botonclaroscuro:hover {
-    transform: scale(1.04);
-}
-
 
 .formcont {
     display: flex;
@@ -341,7 +404,14 @@ footer p {
     min-height: 250px;
 }
 
-.formcont input[type="submit"] {
+.formcont-btns {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.formcont input[type="submit"], .formcont input[type="reset"] {
+    width: 50%;
     font-size: 1.5em;
 }
 
@@ -401,9 +471,166 @@ footer p {
     text-align: center;
 }
 
+#slidercont {
+    transition: background-color 0.3s ease, color 0.3s ease;}
 
+.fondo-accion {
+    background-color: #8f0d0d;
+}
+
+.fondo-plataformas {
+    background-color: #1d025e;
+}
+
+.fondo-otros {
+    background-color: #242424;
+}
+
+
+.slider {
+width: 90%;
+margin: auto;
+overflow: hidden;
+/*height: 750px;*/
+}
+
+.slider-elements {
+    /*position: relative;*/
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    display: flex;
+    width: calc(var(--slides-total, 1) * 100%);
+    transition: transform 1.5s ease-in-out;
+}
+
+.slider-elements-no-transition {
+    transition: none;
+}
+
+.slider-fondo {
+    background-color: #333;
+    padding: 2em 0;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+}
+
+
+.slider li {
+    /*position: absolute;
+    top : 0;*/
+    overflow: hidden;
+    list-style-type: none;
+    width: calc(100% / var(--slides-total, 1)); /*tamaño dinamico segun el número de slides*/
+    flex: 0 0 calc(100% / var(--slides-total, 1));
+    margin: 0px;
+}
+
+.slider li > a,
+.slider li picture,
+.slider li img {
+    display: block;
+    width: 100%;
+}
+
+
+.slider img {
+border-radius: 8px;
+width: 100%;
+height: 600px;
+}
+
+.slider p {
+    text-align: left;
+    width: 100%;
+    font-size: 18px;
+    height: 30px;
+}
+
+.slider a {
+    margin: auto;
+}
+
+.slider-textos {
+    background-color: #ffffff27;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.slider-textos-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    color: white;
+    margin-top: 1em;
+    
+}
+
+.slider-textos h2 {
+    text-align: center;
+    color: rgb(230, 35, 35);
+}
+
+.slider-btn {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    z-index: 10;}
+
+.slider-btn:hover {
+    opacity: 0.9;
+}
+
+.slider-btn-1 {
+    left: 5px;
+}
+
+.slider-btn-2 {
+    right: 5px;
+}
+
+#sliderh2 {
+    color: #e9b517;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 0;
+}
 
 /*MODO OSCURO*/
+
+.botonclaroscuro {  
+    position: fixed;
+    bottom: 50px;
+    right: 10px;
+    transition: all 0.3s ease;
+    padding: 10px 15px;
+    z-index: 1000;
+    background-color: #424242;
+}
+
+.botonclaroscuro img {
+    width: 100%;
+    max-width: 35px;
+    filter: invert(1);
+    height: auto;
+}
+
+.botonclaroscuro:hover {
+    transform: scale(1.04);
+}
+
 
 .modoscuro {
     background-color: #141414;
@@ -434,10 +661,6 @@ footer p {
     color: white;
 }
 
-.modoscuro .containerjuegos {
-    background-color: #333;
-}
-
 .modoscuro input[type="text"], .modoscuro form#buscarjuego input[type="text"], .modoscuro input[type="email"], .modoscuro select, .modoscuro textarea {
     background-color: #595959;
     color: white;
@@ -449,10 +672,22 @@ footer p {
 }
 
 .modoscuro .section h1, .modoscuro .section h2 {
-    color: #eb3232;
+    color: #e9b517;
 }
 
 .modoscuro .btn {
     background-color: #1c1c1c;
     color: #e9b517;
+}
+
+.modoscuro .botonclaroscuro {
+    background-color: #252525 !important;
+}
+
+.modoscuro .botonclaroscuro:hover {
+    background-color: #333 !important;
+}
+
+.modoscuro .containertextojuego {
+    color: white;
 }

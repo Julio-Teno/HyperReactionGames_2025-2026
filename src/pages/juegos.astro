@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContenedorJuegos from '../components/contenedorjuegos';
+import ContenedorJuegos from '../components/juegos/contenedorjuegos';
 
 
 export const prerender = false;
@@ -13,12 +13,23 @@ export const prerender = false;
 <Layout>
     <div class="section">
     <h1>Juegos</h1>
-    <ContenedorJuegos client:load />
+    <ContenedorJuegos url={"/api/juegos/getjuegos"} client:load />
     </div>
 
     <div class="section">
-        <h1>Mejor valorados</h1>
-        <p>Pendiente de hacer</p>
-        <ContenedorJuegos client:load />
+        <h1>Juegos de Accion</h1>
+        <ContenedorJuegos url={"/api/juegos/getjuegoscategoria"} categoria={"Accion"}  client:load />
     </div>
+
+    <div class="section">
+        <h1>Juegos de Plataformas</h1>
+        <ContenedorJuegos url={"/api/juegos/getjuegoscategoria"} categoria={"Plataformas"}  client:load />
+    </div>
+
+    <div class="section">
+        <h1>Otros juegos</h1>
+        <ContenedorJuegos url={"/api/juegos/getjuegoscategoria"} categoria={"Otro"}  client:load />
+    </div>
+
+
 </Layout>

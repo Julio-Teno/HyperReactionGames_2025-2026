@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContenedorJuegos from '../components/juegos/contenedorjuegos';
+
+export const prerender = false;
+
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+
+---
+
+<Layout>
+        <div class="section">
+            <h1>Acceso denegado</h1>
+            <h2>No tienes permiso para acceder a esta pagina.</h2>
+            <img src="/Images/logocompleto.png" alt="Denegado" class="error-image">
+            <div>
+                <a href="/" class="btn">Volver al Inicio</a>
+            </div>
+        </div> 
+
+</Layout>
+

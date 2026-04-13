@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SectionPrincipal from '../components/sectionprincipal';
-import ContenedorJuegos from '../components/contenedorjuegos';
+import ContenedorJuegos from '../components/juegos/contenedorjuegos';
+import Sliderjuegos from '../components/juegos/sliderjuegos';
+import style from '../components/style.css';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -30,11 +32,16 @@ export const prerender = false;
         <SectionPrincipal 
             titulo="Los mejores juegos de reflejos en HyperReactionGames" 
             texto="Aquí encontrarás los mejores juegos de reacción para poner a prueba tus reflejos y habilidades. ¡Prepárate para la acción!"
-            imagen="/Images/logocompleto.png"
+            imagen="/Images/logo.png"
         />
 
+        <div class="section" id="slidercont">
+            <Sliderjuegos url={"/api/juegos/getjuegos"} client:load/>
+        </div>
+
         <div class="section">
-            <ContenedorJuegos client:load/>
+            <h2>Todos los juegos</h2>
+            <ContenedorJuegos url={"/api/juegos/getjuegos"} client:load />
         </div>
     
         <div class="section">

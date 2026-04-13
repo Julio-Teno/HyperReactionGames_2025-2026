@@ -2,10 +2,11 @@ import React from 'react';
 import './style.css';
 
 import { useState, useEffect } from 'react';
+import { set } from 'astro:schema';
 
 export default function Menu() {
     const [iniciosesion, setIniciosesion] = useState(false);
-    const [nombreusuario, setNombreusuario] = useState('');     
+    const [nombreusuario, setNombreusuario] = useState('');  
 
     useEffect(() => {
         fetch('/api/auth/comprobarsesion', {
@@ -22,11 +23,15 @@ export default function Menu() {
             });
     }, []);
 
+
   return (
     <header>
+        
         <div>
-            <img src="/Images/logo.png" alt="Logo" />
-            <img className='headerlogotexto' src="/Images/logotexto.png" alt="Logo con texto" />
+            <a href="/">
+                <img src="/Images/logo.png" alt="Logo" />
+                <img className='headerlogotexto' src="/Images/logotexto.png" alt="Logo con texto" />
+            </a>
         </div>
         <nav>
             <ul>

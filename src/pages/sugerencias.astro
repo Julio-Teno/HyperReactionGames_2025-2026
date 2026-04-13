@@ -4,7 +4,10 @@ import { autorizacion } from '../lib/autorizacion';
 
 export const prerender = false;
 
-const authRedirect = await autorizacion(Astro, { nuevapagina: '/404' });
+const authRedirect = await autorizacion(Astro, { nuevapagina: '/404', 
+nuevapagina2: '/denegado',
+rolRequerido: 3
+ });
 if (authRedirect) return authRedirect;
 
 
@@ -21,20 +24,30 @@ if (authRedirect) return authRedirect;
 
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" required>
+                
+
 
                 <label for="subject">Asunto:</label>
                 <select id="subject" name="subject" required>
                     <option disabled selected value="">Seleccione un asunto</option>
                     <option value="publicar">Publicar Juego</option>
                     <option value="reporte">Errores/Bugs</option>
-                    <option value="colaboracion">Colaboración</option>
-                    <option value="otro">Otro</option>
+                    <option value="otro">Otras sugerencias</option>
                 </select>
 
                 <label for="message">Mensaje:</label>
                 <textarea id="message" name="message" rows="5" required></textarea>
 
-                <input class="btn" type="submit" value="Enviar">
+                <label for="confirmation">
+                    <input type="checkbox" id="confirmation" name="confirmation" required>
+                    Confirmo que mis datos son correctos y autorizo el uso de esta información para responder a mi sugerencia.
+                </label>
+
+                <div class="formcont-btns">
+                    <input class="btn" type="reset" value="Limpiar">
+                    <input class="btn" type="submit" value="Enviar">
+                </div>
+                
             </form>
         </div> 
 </Layout>
