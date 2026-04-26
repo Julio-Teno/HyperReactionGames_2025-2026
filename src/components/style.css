@@ -182,7 +182,8 @@ footer p {
 }
 
 .sectionprincipal {
-    margin-top: -10px; 
+    margin-top: -10px;
+    margin-right: 20px; 
     width: 100%;
     background: rgba(0, 0, 0, 0.26);
     /*background-color: #e9b517;*/
@@ -278,6 +279,13 @@ footer p {
     padding: 5px 0;
 }
 
+.containerjuegos-section-columna meter {
+    width: 100%;
+    max-width: 600px;
+    height: 20px;
+    margin-top: 5px;
+}
+
 .containerjuegos-sectioncontenido {
     display: flex;
     flex-direction: row ;
@@ -371,6 +379,22 @@ footer p {
 .bigbtn {
     font-size: 1.5em;
     padding: 15px 30px;
+}
+
+.btnvaloracion {
+    width: 120px;
+    font-size: 1.2em;
+    padding: 5px 0;
+}
+
+.btnvalorado {
+    background-color: #1c1c1c;
+    color: #e9b517;
+}
+
+.btnnovalorado {
+    background-color: #333;
+    color: #e9b517;
 }
 
 .formcont {

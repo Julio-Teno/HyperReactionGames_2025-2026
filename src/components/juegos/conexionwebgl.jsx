@@ -18,7 +18,7 @@ export default function Conexionwebgl({ titulo, nombrejuego, id_juego, descripci
           />
         </div>
         <div className='containerjuegos-section'>
-          <Contenedorvaloracionjuego />
+          <Contenedorvaloracionjuego id_juego={id_juego} />
           <div className='containerjuegos-section-columna containerjuegos-section-columna1'>
             <h2>Descubre mas sobre el juego</h2>
             <div>
