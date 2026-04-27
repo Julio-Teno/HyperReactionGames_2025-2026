@@ -70,15 +70,11 @@ const fetchValoracion = async () => {
 
 
   return (
-          <div className='containerjuegos-section-columna containerjuegos-section-columna2'>
-            <h2>Valoraciones</h2>
-            <div className='containerjuegos-sectioncontenido'>
-              <button disabled={enProceso} className={`btn btnvaloracion ${valoradolike ? 'btnvalorado' : 'btnnovalorado'}`} onClick={() => fetchvalorar('like')}>Me gusta</button>
-              <button disabled={enProceso} className={`btn btnvaloracion ${valoradodislike ? 'btnvalorado' : 'btnnovalorado'}`} onClick={() => fetchvalorar('dislike')}>No me gusta</button>
-            </div>
+          <div>
             <label>Valoración: {promedio}%</label>
             <meter value={promedio} min="0" max="100" low="30" high="70" optimum="100">{promedio + '%'}</meter>
-            <h3>Vota, vota... que salten las chispas</h3>
+            <button disabled={enProceso} className={`btn btnvaloracion ${valoradolike ? 'btnvalorado' : 'btnnovalorado'}`} onClick={() => fetchvalorar('like')}>Me gusta</button>
+            <button disabled={enProceso} className={`btn btnvaloracion ${valoradodislike ? 'btnvalorado' : 'btnnovalorado'}`} onClick={() => fetchvalorar('dislike')}>No me gusta</button>
           </div>
   );
 }

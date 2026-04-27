@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 
 export default function ContenedorJuegos({url , categoria = null}) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [juegos, setJuegos] = useState([
-  ]); //en el futuro bbdd
+  const [sortOption, setSortOption] = useState('');
+  const [juegos, setJuegos] = useState([]); 
 
   if (categoria) {
     url = `/api/juegos/getjuegoscategoria?categoria=${categoria}`;
@@ -41,13 +41,31 @@ export default function ContenedorJuegos({url , categoria = null}) {
     //si no hay respuesta, juegos = [todavia no hay juegos F]
     //juegos.filter(juego => juego.titulo.toLowerCase().includes(searchTerm.toLowerCase()))
 
-    const juegosFiltrados = juegos.filter(juego => juego.titulo.toLowerCase().includes(searchTerm.toLowerCase()));
+    let juegosFiltrados = juegos.filter(juego => juego.titulo.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    if (sortOption === 'titulo') {
+      juegosFiltrados.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    } else if (sortOption === 'fecha' || sortOption === '') {
+        juegosFiltrados.sort((a, b) => new Date(b.fecha) - new Date(a.fecha)); 
+    } else if (sortOption === 'antiguos') {
+        juegosFiltrados.sort((a, b) => new Date(a.fecha) - new Date(b.fecha));
+    } else if (sortOption === 'popularidad') {        
+        juegosFiltrados.sort((a, b) => b.popularidad - a.popularidad);
+    }
+
+
 
   return (
     <div>
         <form id='buscarjuego'>
-            <label htmlFor="buscar">Buscar juegos:</label>
             <input type='text' id='buscar' className='juegosbusqueda' placeholder='Escribe el juego que quieras jugar...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            <select id='ordenarpor' value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+                <option value=''>Ordenar por</option>
+                <option value='titulo'>Nombre</option>
+                <option value='fecha'>Recientes</option>
+                <option value='antiguos'>Antiguos</option>
+                <option value='popularidad'>Populares</option>
+            </select>
         </form>
         
         <div className='containerportadasjuegos'>
