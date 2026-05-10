@@ -32,7 +32,7 @@ export async function POST({ request }) {
 
     if (!validarPass(password)) {
       return Response.json(
-        { error: 'La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y símbolos' },
+        { error: 'La contraseña debe tener al menos 8 caracteres, incluir mayúsculas, minúsculas, números y símbolos (!@#$%^&*()-+)' },
         { status: 400 }
       );
     }

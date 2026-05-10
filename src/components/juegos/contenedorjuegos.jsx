@@ -60,7 +60,7 @@ export default function ContenedorJuegos({url , categoria = null}) {
         <form id='buscarjuego'>
             <input type='text' id='buscar' className='juegosbusqueda' placeholder='Escribe el juego que quieras jugar...' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
             <select id='ordenarpor' value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-                <option value=''>Ordenar por</option>
+                <option value='' disabled>Ordenar por</option>
                 <option value='titulo'>Nombre</option>
                 <option value='fecha'>Recientes</option>
                 <option value='antiguos'>Antiguos</option>

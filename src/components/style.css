@@ -82,6 +82,8 @@ header nav {
 }
 
 
+
+
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -89,6 +91,7 @@ nav ul {
     display: flex;
     height: 100%;
 }
+
 
 nav ul li a {
     text-decoration: none;
@@ -110,11 +113,53 @@ nav ul li a:hover {
     color: #e9b517
 }
 
+nav ul li ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    background-color: #430000;
+    border-top: 5px solid #242424;
+    border-bottom: 5px solid #7c0202;
+    height: 50px;
+    transition: all 0.3s ease;
+    right: 0;
+}
+
+nav ul li:hover > ul {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+}
+
+nav ul li ul:hover {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+}
+
+nav ul li ul li a:hover {
+    background-color: #630202;
+    color: #e9b517;
+}
+
+
 header img {
     width: 66px;
     height: 100%;
     margin-bottom: 5px;
     padding-left: 10px;
+}
+
+.headerperfil {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 10px;
+    margin-bottom: 0 !important;
+    border: 3px solid #666666;
+    padding: 0 !important;
+    background-color: #afafaf;
 }
 
 footer {
@@ -235,6 +280,15 @@ footer p {
     margin-bottom: 30px;
 }
 
+.sectionperfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px;
+    min-height: 70vh;
+}
+
 .containerjuegos {
     width: 100%;
     height: 80vh;
@@ -248,6 +302,7 @@ footer p {
     justify-content: space-between;
     padding: 10px;
     background-color: #676767;
+    border-radius: 8px 8px 0 0;
 }
 
 .containerjuegos-header div {
@@ -658,6 +713,212 @@ height: 600px;
     margin-top: 0;
 }
 
+/*perfil*/
+.perfil-card {
+        background-color: var(--color-secundario, #1f2025); /* Reemplaza con una variable de tu CSS */
+        border: 1px solid #333;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 500px;
+        color: #ffffff;
+    }
+
+    /* Cabecera, imagen y título alineados */
+    .perfil-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        border-bottom: 1px solid #3a3b40;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    .perfil-header img {
+        width: 200px;
+        height: 200px;
+        border: 3px solid #666666;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .perfil-header div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 2em;
+    }
+
+    .perfil-info {
+        display: flex;
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+
+    .perfil-info h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .perfil-info p {
+        margin: 0.5rem 0 0 0;
+        color: #58585a;
+        font-size: 0.95rem;
+    }
+
+    /* Sección inferior (roles) */
+    .perfil-body h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: #616161;
+    }
+
+    .roles-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .rol-badge {
+        background-color: #fecb05; /* Manteniendo un tema llamativo para las badges */
+        color: #1a1a24;
+        padding: 0.4rem 0.9rem;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+
+    /*modal perfil*/
+    .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #f1f1f1;
+    color: #000000;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid #cecece;
+    flex-direction: column !important;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-input-file {
+    margin-bottom: 1.5rem;
+    color: black;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.sectiontabla {
+    width: 95%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tabla-juegos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-juegos thead th {
+    background-color: #333;
+    color: #e9b517;
+}
+
+.tabla-juegos th, .tabla-juegos td {
+    border: 1px solid rgb(221, 221, 221);
+    padding: 8px;
+    text-align: left;
+}
+
+.tabla-juegos th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.tabla-juegos tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla-juegos tr:hover {
+    background-color: #cfcfcf;
+}
+
+.tabla-juegos td a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tabla-juegos td a:hover {
+    color: #e9b517;
+}
+
+.tabla-juegos .valoracion {
+    font-weight: bold;
+    color: #e9b517;
+}
+
+.tabla-juegos .valoracion-alta {
+    color: #29a50a;
+    background-color: #38bb171c;
+}
+
+.tabla-juegos .valoracion-baja {
+    color: #8f0d0d;
+    background-color: #8f0d0d1c;
+}
+
+.tabla-juegos img {
+    width: 150px;
+    height: 100px;
+    border-radius: 4px;
+}
+
+.tabla-juegos button {
+    background-color: #333;
+    color: #e9b517;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+}
+
 /*MODO OSCURO*/
 
 .botonclaroscuro {  
@@ -752,4 +1013,20 @@ height: 600px;
 
 .modoscuro  .fondo-otros {
     background-color: #242424;
+}
+
+.modoscuro .containerjuegos-section-columna1 {
+    background-color: #3d3c3c;
+}
+
+.modoscuro .containerjuegos-section-columna1 h2 {
+    color: #e9b517;
+}   
+
+.modoscuro .perfil-header {
+    border-bottom: 1px solid #555;
+}
+
+.modoscuro .perfil-header p {
+    color: #ffffff;
 }

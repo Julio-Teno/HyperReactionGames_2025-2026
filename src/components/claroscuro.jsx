@@ -12,6 +12,7 @@ export default function Claroscuro() {
     setIsDarkMode(nuevomodo);
     setTextoboton(nuevomodo ? <img src='/Images/sun.svg' alt='Modo claro' /> : <img src='/Images/moon.svg' alt='Modo oscuro' />);
   };
+  
 
   // Use useEffect to handle DOM manipulation after component mounts
   useEffect(() => {

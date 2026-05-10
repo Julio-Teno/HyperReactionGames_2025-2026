@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 import { autorizacion } from '../lib/autorizacion';
 import { query } from '../lib/db';
+import ModalCambioFoto from '../components/modal-cambiofoto';
 
 export const prerender = false;
 
@@ -14,15 +15,93 @@ const sid = Astro.cookies.get('sid')?.value;
 const datosUsuario = await query('SELECT nombre, fecha_alta FROM usuario WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
 const rolesUsuario = await query('SELECT id_rol FROM usuariorol WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
 
+/*
+const fotoUsuario = await query('SELECT archivo FROM usuariofoto WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
+*/
+const fechaFormateada = new Date(datosUsuario.rows[0].fecha_alta).toLocaleDateString('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+}); 
+
+/*
+let fotoUsuariourl = "Images/foto-por-defecto.png";
+
+if (fotoUsuario.rows.length > 0 && fotoUsuario.rows[0].archivo) {
+    const data = fotoUsuario.rows[0].archivo;
+    // Nos aseguramos de tener un array de bytes (Uint8Array)
+    const uint8Array = new Uint8Array(data);
+    
+    // jpeg por defecto, si no se reconoce el formato se asume jpeg
+    let mimeType = 'image/jpeg'; 
+
+    // comprobar binario para ver formato
+    if (uint8Array.length >= 8) {
+        if (uint8Array[0] === 0xFF && uint8Array[1] === 0xD8 && uint8Array[2] === 0xFF) {
+            mimeType = 'image/jpeg'; // Para jpg y jpeg
+        } else if (uint8Array[0] === 0x89 && uint8Array[1] === 0x50 && uint8Array[2] === 0x4E && uint8Array[3] === 0x47) {
+            mimeType = 'image/png'; // Para png
+        }
+    }
+
+    // Convertir de Uint8Array (o Array regular) a string Base64 transparente
+    // btoa codifica un string binario a Base64 y String.fromCharCode lo convierte.
+    // Ojo: btoa.apply tiene un límite por la call stack con archivos muy grandes, 
+    // pero para avatares sirve sin problemas. La alternativa segura nativa de JS:
+    
+    let binaryString = '';
+    for (let i = 0; i < uint8Array.length; i++) {
+        binaryString += String.fromCharCode(uint8Array[i]);
+    }
+    const base64Image = btoa(binaryString);
+
+    fotoUsuariourl = `data:${mimeType};base64,${base64Image}`;
+}*/
+
+
+let fotoUsuario = `/api/usuario/getperfil`; //sacar id de la cookie para no filtrarla
+if (!fotoUsuario) {
+    fotoUsuario = "Images/foto-por-defecto.png";
+}
+
+//SI NO FUNCIONA INSTALAR BUFFER (si funciona)
+
+
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-    <div class="section">
-        <h1>Hola, {datosUsuario.rows[0].nombre}</h1>
-        <p>Este es tu perfil de usuario.</p>
-        <p>Creaste tu cuenta el {datosUsuario.rows[0].fecha_alta}.</p>
-        <p>Tus roles son: {rolesUsuario.rows.map(rol => rol.id_rol).join(', ')}</p>
+    <div class="section sectionperfil">
+        <div class="perfil-header">
+            <div>
+                {fotoUsuario && (
+                    <picture>
+                        <img src={fotoUsuario} alt="Foto de perfil" class="foto-perfil" />
+                    </picture>
+                )}
+                <div class="perfil-info">
+                    <h1>{datosUsuario.rows[0].nombre}</h1>
+                    <p>Creaste tu cuenta el {fechaFormateada}.</p>
+                </div>
+            </div>
+            <ModalCambioFoto 
+                url={`/api/usuario/postperfil?id=${datosUsuario.rows[0].id_usuario}`} 
+                textoBoton="Editar foto de perfil" 
+                tituloModal={"Cambiar foto de perfil"}
+                esBotonTabla={false}
+                client:load
+            />
+        </div>
+
+        <div class="perfil-body">
+            <h2>Roles</h2>
+            <div class="roles-container">
+                {rolesUsuario.rows.map(rol => (
+                    <span class="rol-badge">Rol <div id={rol.id_rol}>{rol.id_rol}</div></span>
+                ))}
+                {rolesUsuario.length === 0 && <span class="rol-badge">Sin roles</span>}
+            </div>
+        </div>
     </div>
 </Layout>

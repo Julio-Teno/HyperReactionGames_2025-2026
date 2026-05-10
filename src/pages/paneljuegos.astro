@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { autorizacion } from '../lib/autorizacion';
+import Tablamod from '../components/juegos/tablamod.jsx';
+
+export const prerender = false;
+
+const authRedirect = await autorizacion(Astro, { nuevapagina: '/404', 
+nuevapagina2: '/denegado',
+rolRequerido: 2
+ });
+if (authRedirect) return authRedirect;
+
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+        <div class="section sectiontabla">        
+            <h1>Todos los juegos</h1>
+            <p>Solo para administradores</p>
+            <Tablamod url={"/api/juegos/getjuegos"} client:load/>
+        </div>
+</Layout>

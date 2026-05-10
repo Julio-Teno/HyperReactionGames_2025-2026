@@ -7,6 +7,7 @@ import { set } from 'astro:schema';
 export default function Menu() {
     const [iniciosesion, setIniciosesion] = useState(false);
     const [nombreusuario, setNombreusuario] = useState('');  
+    const [fotoPerfil, setFotoPerfil] = useState('/Images/foto-por-defecto.png'); // Estado para la foto de perfil
 
     useEffect(() => {
         fetch('/api/auth/comprobarsesion', {
@@ -17,10 +18,13 @@ export default function Menu() {
             .then((data) => {
                 setIniciosesion(Boolean(data?.valid));
                 setNombreusuario(data?.username || '');
+                setFotoPerfil(`/api/usuario/getperfil`); 
             })
             .catch(() => {
                 setIniciosesion(false);
             });
+
+
     }, []);
 
 
@@ -41,7 +45,17 @@ export default function Menu() {
                     <><li><a href="/login">Iniciar Sesion</a></li><li><a href="/register">Registrarse</a></li></>
                 )} 
                 {iniciosesion && (
-                    <><li><a href="/sugerencias">Sugerencias</a></li><li><a href="/perfil">{nombreusuario}</a></li><li><a href="/api/auth/logout">Cerrar Sesion</a></li></>
+                    <><li><a href="/sugerencias">Sugerencias</a></li>
+                    <li>
+                        <a href="/perfil">
+                            {nombreusuario}
+                            <img className='headerperfil' src={fotoPerfil} alt="Icono de perfil" />
+                        </a>
+                        <ul>
+                            <li><a href="/api/auth/logout">Cerrar Sesion</a></li>
+                        </ul>
+                    </li>
+                    </>
                 )}
             </ul>
         </nav>
