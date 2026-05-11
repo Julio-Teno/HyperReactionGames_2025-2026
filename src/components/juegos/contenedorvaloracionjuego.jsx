@@ -19,7 +19,7 @@ useEffect(() => {
 }, [id_juego]);
 
 const fetchValoracion = async () => {
-    url = `/api/valoraciones/getvaloracionjuego?id_juego=${id_juego}`;
+    url = `/api/valoraciones/getvaloracionjuego/${id_juego}`;
     try {
       const response = await fetch(url, {
         method: 'GET',

@@ -837,6 +837,31 @@ height: 600px;
     color: black;
 }
 
+.modal-input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.modal-textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    min-height: 100px;
+}
+
+.modal-select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
 .modal-actions {
     display: flex;
     justify-content: flex-end;
@@ -1029,4 +1054,27 @@ height: 600px;
 
 .modoscuro .perfil-header p {
     color: #ffffff;
+}
+
+.modoscuro .modal-content {
+    background-color: #3d3c3c;
+    color: white;
+    border: 1px solid #555;
+}
+
+.modoscuro .tabla-juegos th, .modoscuro .tabla-juegos td {
+    border: 1px solid #444;
+}
+
+.modoscuro .tabla-juegos thead th {
+    background-color: #222;
+    color: #e9b517;
+}
+
+.modoscuro .tabla-juegos tr:nth-child(even) {
+    background-color: #333333;
+}
+
+.modoscuro .tabla-juegos tr:hover {
+    background-color: #555555;
 }

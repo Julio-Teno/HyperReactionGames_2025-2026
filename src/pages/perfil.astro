@@ -15,6 +15,9 @@ const sid = Astro.cookies.get('sid')?.value;
 const datosUsuario = await query('SELECT nombre, fecha_alta FROM usuario WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
 const rolesUsuario = await query('SELECT id_rol FROM usuariorol WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
 
+// Comprueba si el usuario tiene el rol 2
+const tieneRol2 = rolesUsuario.rows.some(rol => rol.id_rol === 2);
+
 /*
 const fotoUsuario = await query('SELECT archivo FROM usuariofoto WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
 */
@@ -101,7 +104,12 @@ if (!fotoUsuario) {
                     <span class="rol-badge">Rol <div id={rol.id_rol}>{rol.id_rol}</div></span>
                 ))}
                 {rolesUsuario.length === 0 && <span class="rol-badge">Sin roles</span>}
+                {tieneRol2 && (
+                <a href="/paneljuegos" class="btn">Ir a Panel de Juegos</a>
+            )}
             </div>
+            
+            
         </div>
     </div>
 </Layout>

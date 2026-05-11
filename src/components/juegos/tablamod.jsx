@@ -3,6 +3,7 @@ import '../style.css';
 import Juegocont from './juegocont';
 import { useState, useEffect } from 'react';
 import ModalCambioFoto from '../modal-cambiofoto';
+import ModalCambioDatos from '../modal-cambiodatos';
 
 export default function Tablamod({url , categoria = null}) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -62,7 +63,9 @@ export default function Tablamod({url , categoria = null}) {
         <tr>
           <th>Nombre</th>
           <th>Descripción</th>
+          <th>Categoría</th>
           <th>Fecha</th>
+          <th>Hecho por</th>
           <th>Popularidad</th>
           <th>Imagen</th>
           <th>Acciones</th>
@@ -73,11 +76,17 @@ export default function Tablamod({url , categoria = null}) {
           <tr key={index}>
             <td>{juego.titulo}</td>
             <td>{juego.descripcion}</td>
+            <td>{juego.categoria}</td>
             <td>{juego.fecha}</td>
+            <td>{juego.id_usuario}</td>
             <td className={`valoracion ${getClaseValoracion(juego.popularidad)}`}>{juego.popularidad}</td>
             <td><img src={juego.imagen} alt={juego.titulo} /></td>
             <td>
-              <button className='btn'>Editar</button>
+              <ModalCambioDatos 
+                  url={`/api/juegos/putjuegos/${juego.id}`}  
+                  id_juego={juego.id}
+                  client:load
+              />
               <ModalCambioFoto 
                   url={`/api/juegos/postportada/${juego.id}`} 
                   textoBoton="Cambiar imagen" 
