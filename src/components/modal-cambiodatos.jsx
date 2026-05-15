@@ -38,26 +38,27 @@ export default function ModalCambioDatos({ url = '', id_juego }) {
 
     useEffect(() => {
         if (!id_juego) return;
-        fetch(`/api/juegos/getjuegosid/${id_juego}`, {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Error al obtener los datos del juego');
+        
+        const fetchJuego = async () => {
+            try {
+                const response = await fetch(`/api/juegos/getjuegosid/${id_juego}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Error al obtener los datos del juego');
+                }
+                
+                const data = await response.json();
+                setJuego(data[0] || {});
+            } catch (error) {
+                console.error('Error fetching juego:', error);
             }
-            return response.json();
-        })
-        .then((data) => {
-            setJuego(data[0] || {});
-        })
-        .catch((error) => {
-            console.error('Error fetching juego:', error);
-        });
-    }, [id_juego]);
-    
+        };
 
-    ;
+        fetchJuego();
+    }, [id_juego]);
 
     return (
         <>

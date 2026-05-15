@@ -1,0 +1,42 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import RankingJuego from '../../../components/juegos/rankingjuego';
+import { autorizacion } from '../../../lib/autorizacion';
+import { query } from '../../../lib/db';
+
+export const prerender = false;
+
+const authRedirect = await autorizacion(Astro, { nuevapagina: '/404' });
+if (authRedirect) return authRedirect;
+
+const { juego } = Astro.params;
+
+if (!juego) {
+    return Astro.redirect('/404');
+} else if (isNaN(Number(juego))) {
+    return Astro.redirect('/404');
+}
+
+const juegoaobtener = await query('SELECT id_juego, titulo, descripcion, categoria, fecha_creacion FROM juego WHERE id_juego = $1', [juego]);
+
+let id_juegoj = 0;
+
+
+
+if (juegoaobtener.rowCount === 0) {
+    return Astro.redirect('/404');
+} else {
+     id_juegoj = juegoaobtener.rows[0].id_juego;
+} 
+
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+    <div class='section' style="height: 70vh;">
+        <a href={`/juego/${id_juegoj}`} class="btn">Volver al juego</a>
+        <RankingJuego id_juego={id_juegoj} client:load/>
+    </div>  
+</Layout>

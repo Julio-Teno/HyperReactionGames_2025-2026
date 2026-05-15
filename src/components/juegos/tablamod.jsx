@@ -23,24 +23,27 @@ export default function Tablamod({url , categoria = null}) {
     url = `/api/juegos/getjuegoscategoria?categoria=${categoria}`;
   }
 
-  useEffect(() => { //pulir
-    fetch(`${url}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Error al obtener los juegos');
-            }
-            return response.json();
-        })
-        .then((data) => {
-            setJuegos(data);
-        })
-        .catch((error) => {
-            console.error('Error fetching juegos:', error);
-            setJuegos([]);
+  useEffect(() => {
+    const fetchJuegos = async () => {
+      try {
+        const response = await fetch(`${url}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         });
+        
+        if (!response.ok) {
+            throw new Error('Error al obtener los juegos');
+        }
+        
+        const data = await response.json();
+        setJuegos(data);
+      } catch (error) {
+        console.error('Error fetching juegos:', error);
+        setJuegos([]);
+      }
+    };
+
+    fetchJuegos();
   }, []);
 
   

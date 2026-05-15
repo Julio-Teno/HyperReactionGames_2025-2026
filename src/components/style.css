@@ -944,6 +944,11 @@ height: 600px;
     cursor: pointer;
 }
 
+.puntuacion-usuario {
+    font-weight: bold;
+    color: #a50600;
+}
+
 /*MODO OSCURO*/
 
 .botonclaroscuro {  

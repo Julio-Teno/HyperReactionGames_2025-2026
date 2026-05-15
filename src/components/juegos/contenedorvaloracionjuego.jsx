@@ -27,7 +27,7 @@ const fetchValoracion = async () => {
       });
       const data = await response.json();
       if (response.ok) {
-        setPromedio(data.promedio);
+        setPromedio(data.promedio.toFixed(0));
         setValoradolike(data.valoracion_usuario === 'like');
         setValoradodislike(data.valoracion_usuario === 'dislike');
       }
@@ -40,7 +40,7 @@ const fetchValoracion = async () => {
     const fetchvalorar = async (valor) => {
       if (enProceso) return; 
       setEnProceso(true);
-      url = `/api/valoraciones/postvaloracion?id_juego=${id_juego}`;
+      url = `/api/valoraciones/postvaloracion`;
        try { 
             const response = await fetch(url, { 
                 method: "POST", 
