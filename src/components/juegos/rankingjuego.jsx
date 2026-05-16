@@ -55,25 +55,26 @@ export default function RankingJuego({id_juego, limite = null}) {
     } 
 
 
+  if (ranking.length > 0) { //opcional serverside ahorra esta parte
   return (
     <div>
+        <h2>Ranking de {ranking[0]?.nombre_juego || 'Juego'}</h2>
         <form id='buscarjuego'>
             <input type='text' id='buscar' className='juegosbusqueda' placeholder='Buscar usuario' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+            <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
+                <option value='' disabled>Ordenar por</option>
+                <option value='nombre'>Nombre</option>
+                <option value='primeros'>Primeros</option>
+                <option value='ultimos'>Ultimos</option>
+            </select>
         </form>
-        
-        <h1>Ranking de {ranking[0]?.nombre_juego || 'Juego'}</h1>
         <table className='tabla-juegos'>
             <thead>
                 <tr>
                     <th>Posición</th>
                     <th>Usuario</th>
                     <th>Puntuación</th>
-                    <th><select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-                        <option value='primeros' disabled>Ordenar por</option>
-                        <option value='nombre'>Nombre</option>
-                        <option value='primeros'>Primeros</option>
-                        <option value='ultimos'>Ultimos</option>
-                    </select></th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -89,4 +90,14 @@ export default function RankingJuego({id_juego, limite = null}) {
         </table>
     </div>
   );
+    }
+    else {
+        //devolver nulo o div style display none o algo asi, porque el juego existe pero no tiene puntuaciones
+        return ( //es opcional pues el serverside puede ahorrar esta parte
+            <div style={{ display: 'none' }}>
+                <h2>Ranking de {ranking[0]?.nombre_juego || 'Juego'}</h2>
+                <p>Aún no hay puntuaciones para este juego.</p>
+            </div>
+        )
+    }
 }
