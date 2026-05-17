@@ -6,7 +6,8 @@ import { useState, useEffect } from 'react';
 export default function RankingJuego({id_juego, limite = null}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState('');
-  const [ranking, setRanking] = useState([]); 
+  const [ranking, setRanking] = useState([]);
+  const [mediaPuntuacion, setMediaPuntuacion] = useState(null);
 
 
   useEffect(() => {
@@ -23,10 +24,19 @@ export default function RankingJuego({id_juego, limite = null}) {
         }
         
         const data = await response.json();
-        setRanking(data);
+        setRanking(data.puntuaciones || []);
+        //guardar media 
+        if (data.mediaPuntuacion !== null && data.mediaPuntuacion !== undefined) {
+          const media = parseFloat(data.mediaPuntuacion);
+          setMediaPuntuacion(!isNaN(media) ? media.toFixed(2) : null);
+        } else {
+          setMediaPuntuacion(null);
+        }
+
       } catch (error) {
         console.error('Error fetching juegos:', error);
         setRanking([]);
+        setMediaPuntuacion(null);
       }
     };
 
@@ -68,6 +78,7 @@ export default function RankingJuego({id_juego, limite = null}) {
                 <option value='ultimos'>Ultimos</option>
             </select>
         </form>
+        <h2>Media puntos: {mediaPuntuacion}</h2>
         <table className='tabla-juegos'>
             <thead>
                 <tr>
