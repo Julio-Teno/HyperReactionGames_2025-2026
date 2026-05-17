@@ -37,7 +37,7 @@ export default function ModalCambioDatos({ url = '', id_juego }) {
     };
 
     useEffect(() => {
-        if (!id_juego) return;
+        if (!isOpen || !id_juego) return;
         
         const fetchJuego = async () => {
             try {
@@ -58,7 +58,7 @@ export default function ModalCambioDatos({ url = '', id_juego }) {
         };
 
         fetchJuego();
-    }, [id_juego]);
+    }, [id_juego, isOpen]);
 
     return (
         <>
