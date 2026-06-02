@@ -13,7 +13,7 @@ if (authRedirect) return authRedirect;
 
 const sid = Astro.cookies.get('sid')?.value;
 const datosUsuario = await query('SELECT nombre, fecha_alta FROM usuario WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
-const rolesUsuario = await query('SELECT id_rol FROM usuariorol WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
+const rolesUsuario = await query('SELECT rol, usuariorol.id_rol FROM usuariorol INNER JOIN rol ON usuariorol.id_rol = rol.id_rol WHERE id_usuario = (SELECT id_usuario FROM sesion WHERE id_sesion = $1)', [sid]);
 
 // Comprueba si el usuario tiene el rol 2
 const tieneRol2 = rolesUsuario.rows.some(rol => rol.id_rol === 2);
@@ -67,6 +67,7 @@ if (!fotoUsuario) {
     fotoUsuario = "Images/foto-por-defecto.png";
 }
 
+
 //SI NO FUNCIONA INSTALAR BUFFER (si funciona)
 
 
@@ -101,9 +102,9 @@ if (!fotoUsuario) {
             <h2>Roles</h2>
             <div class="roles-container">
                 {rolesUsuario.rows.map(rol => (
-                    <span class="rol-badge">Rol <div id={rol.id_rol}>{rol.id_rol}</div></span>
+                    <span class="rol-badge"><div id={rol.id_rol}>{rol.rol}</div></span>
                 ))}
-                {rolesUsuario.length === 0 && <span class="rol-badge">Sin roles</span>}
+                {rolesUsuario.rows.length === 0 && <span class="rol-badge">Sin roles</span>}
                 {tieneRol2 && (
                 <a href="/paneljuegos" class="btn">Ir a Panel de Juegos</a>
             )}

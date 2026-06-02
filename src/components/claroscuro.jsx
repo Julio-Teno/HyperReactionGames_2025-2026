@@ -16,8 +16,7 @@ export default function Claroscuro() {
 
   // Use useEffect to handle DOM manipulation after component mounts
   useEffect(() => {
-    const boton = document.querySelector('.botonclaroscuro');   
-
+    //const boton = document.querySelector('.botonclaroscuro');   
 
     // Check if we're in the browser (client-side)
     if (typeof document !== 'undefined') {
